@@ -72,6 +72,7 @@ export default function LoginScreen() {
         if (!isNewUser || created){
           // Sign In
           const response = await signIn({ username, password });
+          console.log("user:", { username, password })
           if (response) {
             setErrorMessage(response);
           }

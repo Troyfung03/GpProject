@@ -1,6 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
  
-const BASE_API_URL = "http://192.168.3.11:8000/api/";
+const BASE_API_URL = "http://192.168.1.159:8000/api/";
 const loginErrorMessage = "username/password incorrect";
 const applicationErrorMessage = "Application ran wrong";
  
