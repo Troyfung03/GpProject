@@ -15,7 +15,6 @@ class Order (models.Model):
     updated         = models.DateTimeField(auto_now=True, auto_now_add=False)
     payment_id      = models.CharField(max_length=100, blank=True, default="")
     payment_token   = models.CharField(max_length=100, blank=True, default="")
-    delivery_date   = models.DateField()
 
     def __str__(self):
         return str(self.invoice_no)
@@ -24,7 +23,7 @@ class Order (models.Model):
         if not self.invoice_no:
             self.invoice_no = generating_inovice()
         super(Order, self).save(*args, **kwargs)
-    
+
     def confirm_order(self):
         # update product quantity
         # After client payed
@@ -32,6 +31,8 @@ class Order (models.Model):
         self.product.save()
         self.payment_token = ''
         self.save()
+
+
 
 def generating_inovice():
     i = ''.join(["%s" % randint(0,9) for num in range(0,5)])

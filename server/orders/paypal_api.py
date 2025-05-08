@@ -8,8 +8,8 @@ from paypalrestsdk import Payment
 
 paypalrestsdk.configure({
     'mode': 'sandbox',  # sandbox or live
-    'client_id': 'Adu-LmcjQ9zjkVfkEXy_8Ho5l2RZbfLX3gdT7DDe_saBwBGm0Byrp9JzHnVfy9B7PZZZNXNkUgxVKWGj',
-    'client_secret': 'ELgBQDIIJLXboG8d11Z3T8fsr6vYqfVPh77KJBEVrCwd4wW60WYq4TSqtzySThpSg5Sfk-9sC860XS2i'
+    'client_id': 'AQr2bpjhl1KuF3UaqMBpQCMA-HIbmC4-eIuZEWqkPL1M4Gs3QWwrKWvbnvcY_hEWS1VUmEZw72fS0jjf',
+    'client_secret': 'EKur8RfC_-yJ-BNn7O1BSzf7040WliS2NBx1_-j5uSfZRJ36TZBKiVsCZ6wGtRx2St4gCQvPangRK5bE'
 })
 
 

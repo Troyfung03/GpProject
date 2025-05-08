@@ -1,40 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
-import { StyleSheet, Text, View, Alert } from "react-native";
-import { Button } from "@rneui/base";
-import * as SecureStore from "expo-secure-store";
- 
-import { AuthContext } from "../navigation/context";
- 
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+
 export default function ProfileScreen() {
-  const { signOut } = useContext(AuthContext);
-  const [username, setUsername] = useState("");
- 
-  useEffect(() => {
-    const getUsername = async () => {
-      let username;
-      try {
-        username = await SecureStore.getItemAsync("username");
-        setUsername(username);
-      } catch (e) {
-        console.log("error:", e);
-      }
-    };
- 
-    getUsername();
-  }, []);
- 
   return (
-    <View style={styles.container}>
-      <Text>Hi {username}, Welcome to your profile</Text>
-      <Button title="Logout" onPress={() => signOut()} />
+    <View>
+      <Text>ProfileScreen</Text>
     </View>
   )
 }
- 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-}); 
+
+const styles = StyleSheet.create({})

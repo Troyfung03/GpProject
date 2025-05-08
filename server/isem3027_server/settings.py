@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'orders',
 
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -134,6 +134,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
 
+# Django REST Framework Basic Settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
