@@ -44,41 +44,48 @@ export default function OrderItem({
                 }}
             />
             {/* display the product info */}
-            <Text style={styles.title}>{product.name}</Text>
+            <View style={styles.header}>
+                <Text style={styles.title}>{product.name}</Text>
+                <Text style={styles.priceText}>${product.price}</Text>
+            </View>
             <View style={styles.infoBox}>
                 <Text style={styles.text}>{product.description}</Text>
-                <Text style={styles.text}>Qty: {product.quantity}</Text>
-                <Text style={styles.text}>Price: ${product.price}</Text>
+                <Text style={styles.text}>In stock: {product.quantity}</Text>
                 {product.discount < 1 ? (
                     <Text style={styles.text}>
                         Discount:{" "}
-                        <Text style={styles.discountText}>{discountText}% OFF </Text>
+                        <Text style={styles.discountText}>
+                           {((1-product.discount) * 100).toFixed(2)}% OFF
+                        </Text>
                     </Text>
                 ) : null}
             </View>
-            {/* User quantiry input field */}
+            {/* User quantity input field */}
+            <Text style={styles.label}>Quantity:</Text>
             <TextInput
                 style={styles.textInput}
                 value={quantity}
                 onChangeText={inputHandler}
                 keyboardType="numeric"
             />
-            <Text style={styles.text}>Delivery Date: {deliveryDate.toString()} </Text>
-            <View>
-                <Button onPress={showDatepicker} title="Choose a date!" />
-                <Button onPress={showTimepicker} title="Choose a time!" />
-                {showDatetimePicker && (
-                    <DateTimePicker
-                        testID="dateTimePicker"
-                        value={deliveryDate}
-                        minimumDate={new Date()}
-                        mode={mode}
-                        is24Hour={true}
-                        display="default"
-                        onChange={onChange}
-                    />
-                )}
+            <Text style={styles.label}>
+                Delivery Date: {deliveryDate.toLocaleString()}
+            </Text>
+            <View style={styles.dateTimeRow}>
+                <Button onPress={showDatepicker} title="Choose Date" />
+                <Button onPress={showTimepicker} title="Choose Time" />
             </View>
+            {showDatetimePicker && (
+                <DateTimePicker
+                    testID="dateTimePicker"
+                    value={deliveryDate}
+                    minimumDate={new Date()}
+                    mode={mode}
+                    is24Hour={true}
+                    display="default"
+                    onChange={onChange}
+                />
+            )}
             {/* display total amount */}
             <Text style={styles.amountText}>Total: ${totalAmount}</Text>
         </View>
@@ -96,6 +103,17 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 5,
     },
+    header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 10,
+    },
+    priceText: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: "#333",
+    },
     logo: {
         resizeMode: "contain",
         height: 80,
@@ -105,7 +123,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: "bold",
-        marginBottom: 10,
     },
     infoBox: {
         alignSelf: "flex-start",
@@ -119,6 +136,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "red",
     },
+    label: {
+        fontSize: 16,
+        fontWeight: "bold",
+        marginVertical: 5,
+        color: "#333",
+    },
     amountText: {
         fontSize: 18,
         fontWeight: "bold",
@@ -131,5 +154,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         borderColor: "#ccc",
+    },
+    dateTimeRow: {
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        marginVertical: 10,
     },
 });

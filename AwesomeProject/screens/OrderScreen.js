@@ -53,7 +53,7 @@ export default function OrderScreen({ route }) {
         }
         console.log("Sending order data to server for making payment");
 
-        const formattedDate = deliveryDate.getFullYear() + "_" + (deliveryDate.getMonth() + 1) + "_" + deliveryDate.getDate();
+        const formattedDate = deliveryDate.getFullYear() + "-" + (deliveryDate.getMonth() + 1) + "-" + deliveryDate.getDate();
         const orderData = {
             product: product.id,
             quantity: inputQuantity,
@@ -130,6 +130,12 @@ export default function OrderScreen({ route }) {
                 <Text style={styles.buttonText}>PAY by</Text>
                 <FontAwesome name="cc-paypal" size={40} color="#3b7bbf" />
             </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={() => navigation.goBack()}
+            >
+                <Text style={styles.cancelButtonText}>Cancel Order</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -152,15 +158,34 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#007BFF",
-        padding: 10,
+        borderWidth: 2,
+        borderColor: "#007BFF",
+        padding: 15,
         borderRadius: 10,
-        margin: 20,
+        marginHorizontal: 20,
+        marginBottom: 10,
+        backgroundColor: "transparent",
     },
     buttonText: {
         fontSize: 18,
         fontWeight: "bold",
-        color: "white",
+        color: "#007BFF",
         marginRight: 10,
+    },
+    cancelButton: {
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 2,
+        borderColor: "#FF4C4C",
+        padding: 15,
+        borderRadius: 10,
+        marginHorizontal: 20,
+        backgroundColor: "transparent",
+    },
+    cancelButtonText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#FF4C4C",
+
     },
 });
