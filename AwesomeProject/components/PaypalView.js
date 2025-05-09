@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Modal, Pressable } from 'react-native';
+import { StyleSheet, View, Modal, Pressable, Alert } from 'react-native';
 import { WebView } from "react-native-webview";
 import { MaterialIcons } from "@expo/vector-icons";
 export default function PaypalView({
@@ -18,6 +18,10 @@ export default function PaypalView({
                     <WebView
                         source={{ uri: url }}
                         onNavigationStateChange={paypalHandler}
+                        onError={() => {
+                            Alert.alert("Error", "Failed to load PayPal page.", [{ text: "Okay" }]);
+                            closeModal();
+                        }}
                     />
                 </View>
             </View>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
     Alert,
     Image,
@@ -86,18 +86,27 @@ export default function OrderScreen({ route }) {
         setIsLoading(false);
     }
     function closeModal() {
+        // Handle the case where the modal is closed without completing the transaction
+        Alert.alert("Transaction Incomplete", "You closed the payment page without completing the transaction.", [{ text: "Okay" }]);
         setShowModal(false);
     }
+
     function paypalHandler(navState) {
-        // Keep track of going back navigation within component
         const { url } = navState;
+
+        // Check for success status
         if (url.includes('/process/?status=completed')) {
             Alert.alert("Success", "Payment success", [{ text: "Okay" }]);
-            closeModal();
+            setShowModal(false); // Close the modal
+            navigation.goBack(); // Navigate back after successful payment
+            return;
         }
+
+        // Check for cancellation status
         if (url.includes('/cancel/?status=completed')) {
             Alert.alert("Cancelled", "Payment cancelled", [{ text: "Okay" }]);
-            closeModal();
+            setShowModal(false); // Close the modal
+            return;
         }
     }
     return (
