@@ -29,6 +29,30 @@ function ProductNavigator() {
     );
 }
 
+function TransactionsNavigator() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Transactions"
+                component={TransactionsScreen}
+                options={{ headerShown: true, title: "Transactions" }}
+            />
+        </Stack.Navigator>
+    );
+}
+
+function ProfileNavigator() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{ headerShown: true, title: "Profile" }}
+            />
+        </Stack.Navigator>
+    );
+}
+
 export default function BottomTabNavigator() {
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
@@ -46,7 +70,7 @@ export default function BottomTabNavigator() {
 
             <Tab.Screen
                 name="TransactionsTab"
-                component={TransactionsScreen}
+                component={TransactionsNavigator}
                 options={{
                     tabBarLabel: "Transactions",
                     tabBarIcon: ({ color, size }) => (
@@ -57,7 +81,7 @@ export default function BottomTabNavigator() {
 
             <Tab.Screen
                 name="Profile Tab"
-                component={ProfileScreen}
+                component={ProfileNavigator}
                 options={{
                     tabBarLabel: "Profile",
                     tabBarIcon: ({ color, size }) => (
@@ -68,3 +92,8 @@ export default function BottomTabNavigator() {
         </Tab.Navigator>
     );
 }
+
+
+
+
+

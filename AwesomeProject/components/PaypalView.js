@@ -29,10 +29,18 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         marginVertical: 50,
-        marginLeft: 20
+        marginHorizontal: 20,
+        backgroundColor: "#f9f9f9",
+        borderRadius: 10,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
     },
     webView: {
         flex: 1,
         margin: 20,
+        borderRadius: 10,
+        overflow: "hidden",
     },
-})
+});

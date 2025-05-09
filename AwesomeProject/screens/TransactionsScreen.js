@@ -35,12 +35,12 @@ export default function TransactionsScreen() {
                     keyExtractor={(item, index) => index.toString()}
                     ItemSeparatorComponent={() => <Divider />}
                     renderItem={({ item }) => (
-                        <View>
-                            <Text>Invoice No.: {item.invoice_no}</Text>
-                            <Text>Product: {item.product.name}</Text>
-                            <Text>Quantity: {item.quantity}</Text>
-                            <Text>Total Amount: HKD ${item.total_amount}</Text>
-                            <Text>Delivery On: {item.delivery_date}</Text>
+                        <View style={styles.transactionCard}>
+                            <Text style={styles.transactionText}>Invoice No.: {item.invoice_no}</Text>
+                            <Text style={styles.transactionText}>Product: {item.product.name}</Text>
+                            <Text style={styles.transactionText}>Quantity: {item.quantity}</Text>
+                            <Text style={styles.transactionText}>Total Amount: HKD ${item.total_amount}</Text>
+                            <Text style={styles.transactionText}>Delivery On: {item.delivery_date}</Text>
                         </View>
                     )}
                     refreshing={isLoading}
@@ -57,10 +57,10 @@ export default function TransactionsScreen() {
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        backgroundColor: "#f5f5f5",
+        padding: 10,
     },
     emptyView: {
         flex: 1,
@@ -68,10 +68,28 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     topText: {
-        marginTop: 30,
-        marginBottom: 20,
-        fontSize: 20,
+        marginTop: 20,
+        marginBottom: 10,
+        fontSize: 22,
         fontWeight: "bold",
         textAlign: "center",
-    }, 
+        color: "#333",
+    },
+    transactionCard: {
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 10,
+        padding: 15,
+        marginVertical: 10,
+        backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+    },
+    transactionText: {
+        fontSize: 16,
+        marginBottom: 5,
+        color: "#555",
+    },
 });

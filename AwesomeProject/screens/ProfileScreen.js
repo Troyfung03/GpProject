@@ -20,8 +20,13 @@ export default function ProfileScreen() {
   }, []);
   return (
     <View style={styles.container}>
-      <Text>Hi {username}, Welcome to your profile</Text>
-      <Button title="Logout" onPress={() => signOut()} />
+      <Text style={styles.welcomeText}>Hi {username}, Welcome to your profile</Text>
+      <Button
+        title="Logout"
+        buttonStyle={styles.logoutButton}
+        titleStyle={styles.logoutButtonText}
+        onPress={() => signOut()}
+      />
     </View>
 
   )
@@ -31,5 +36,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#f5f5f5",
+  },
+  welcomeText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  logoutButton: {
+    padding: 10,
+    backgroundColor: "#FF3B30",
+    borderRadius: 10,
+  },
+  logoutButtonText: {
+    color: "white",
+    fontWeight: "bold",
   },
 });

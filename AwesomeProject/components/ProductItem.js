@@ -42,25 +42,31 @@ const styles = StyleSheet.create({
     whitebox: {
         flex: 1,
         flexDirection: "row",
-        padding: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: "black",
-        backgroundColor: 'white',
-      },
-      logo: {
-        width: 50,
-        height: 50,
-      },
-      infoBox: {
-        marginHorizontal: 20,
+        padding: 15,
+        marginVertical: 10,
+        borderRadius: 10,
+        backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+    },
+    logo: {
+        width: 60,
+        height: 60,
+        borderRadius: 5,
+    },
+    infoBox: {
+        marginHorizontal: 15,
         flexGrow: 1,
-      },
-      rightIcon: {
+    },
+    rightIcon: {
         alignSelf: "center",
-      },
-      title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-      }
-})
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 5,
+    },
+});
 

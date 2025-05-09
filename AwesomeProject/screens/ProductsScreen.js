@@ -10,14 +10,14 @@ export default function ProductsScreen({ navigation }) {
         navigation.navigate('Order', {
             product: product
         })
-        // function to call api then update the product data
-        async function fetchProducts() {
+    }
+            // function to call api then update the product data
+    async function fetchProducts() {
             setIsLoading(true);
             console.log("fetching product list from server ...");
             const products = await getProducts();
             setProductsList(products);
             setIsLoading(false);
-        }
     }
     // useEffect hook run immediately when the screen loaded
     useEffect(() => {
@@ -25,16 +25,18 @@ export default function ProductsScreen({ navigation }) {
     }, [])
     return (
         <View style={styles.container}>
-            <Text style={styles.topText}>Products</Text>
+            <Text style={styles.topText}>Available Products</Text>
             {productsList.length > 0 ?
                 <FlatList
                     data={productsList}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => (
-                        <ProductItem
-                            item={item}
-                            pressHandler={pressHandler}
-                        />
+                        <View style={styles.productContainer}>
+                            <ProductItem
+                                item={item}
+                                pressHandler={pressHandler}
+                            />
+                        </View>
                     )}
                     refreshing={isLoading}
                     onRefresh={() => fetchProducts()}
@@ -50,6 +52,8 @@ export default function ProductsScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#f5f5f5",
+        padding: 10,
     },
     emptyView: {
         flex: 1,
@@ -57,10 +61,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     topText: {
-        marginTop: 30,
-        marginBottom: 20,
-        fontSize: 20,
+        marginTop: 20,
+        marginBottom: 10,
+        fontSize: 22,
         fontWeight: "bold",
         textAlign: "center",
-    }
-})
+        color: "#333",
+    },
+    productContainer: {
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 10,
+        padding: 10,
+        marginVertical: 10,
+        backgroundColor: "white",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+    },
+});
