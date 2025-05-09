@@ -60,6 +60,7 @@ export default function OrderScreen({ route }) {
             quantity: inputQuantity,
             total_amount: totalAmount,
             delivery_date: formattedDate,
+            delivery_time: deliveryDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             customer_address: customerAddress,
         };
         // using orderData to make payment request to server

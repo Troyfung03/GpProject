@@ -41,7 +41,8 @@ export default function TransactionsScreen() {
                             <Text style={styles.transactionText}>Quantity: {item.quantity}</Text>
                             <Text style={styles.transactionText}>Total Amount: HKD ${item.total_amount}</Text>
                             <Text style={styles.transactionText}>Customer Address: {item.customer_address}</Text>
-                            <Text style={styles.transactionText}>Delivery On: {item.delivery_date}</Text>
+                            <Text style={styles.transactionText}>Delivery On: {item.delivery_date}, {item.delivery_time}</Text>
+
                         </View>
                     )}
                     refreshing={isLoading}

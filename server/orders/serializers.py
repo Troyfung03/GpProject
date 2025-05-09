@@ -9,10 +9,10 @@ class OrderListSerializer(serializers.ModelSerializer):
     product = serializers.StringRelatedField()
     class Meta:
         model = Order
-        fields = ('invoice_no', 'customer', 'product', 'quantity', 'total_amount', 'payment_id', 'payment_token', 'delivery_date', 'customer_address')
+        fields = ('invoice_no', 'customer', 'product', 'quantity', 'total_amount', 'payment_id', 'payment_token', 'delivery_date','delivery_time', 'customer_address')
  
  
 class OrderCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('customer', 'product', 'quantity', 'total_amount', 'payment_id', 'payment_token', 'delivery_date', 'customer_address')
+        fields = ('customer', 'product', 'quantity', 'total_amount', 'payment_id', 'payment_token', 'delivery_date','delivery_time', 'customer_address')
