@@ -37,9 +37,10 @@ export default function TransactionsScreen() {
                     renderItem={({ item }) => (
                         <View style={styles.transactionCard}>
                             <Text style={styles.transactionText}>Invoice No.: {item.invoice_no}</Text>
-                            <Text style={styles.transactionText}>Product: {item.product.name}</Text>
+                            <Text style={styles.transactionText}>Product: {item.product}</Text>
                             <Text style={styles.transactionText}>Quantity: {item.quantity}</Text>
                             <Text style={styles.transactionText}>Total Amount: HKD ${item.total_amount}</Text>
+                            <Text style={styles.transactionText}>Customer Address: {item.customer_address}</Text>
                             <Text style={styles.transactionText}>Delivery On: {item.delivery_date}</Text>
                         </View>
                     )}
