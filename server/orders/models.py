@@ -15,6 +15,7 @@ class Order (models.Model):
     updated         = models.DateTimeField(auto_now=True, auto_now_add=False)
     payment_id      = models.CharField(max_length=100, blank=True, default="")
     payment_token   = models.CharField(max_length=100, blank=True, default="")
+    delivery_date   = models.DateField()
 
     def __str__(self):
         return str(self.invoice_no)
