@@ -8,6 +8,8 @@ export default function OrderItem({
     inputHandler,
     deliveryDate,
     setDeliveryDate,
+    customerAddress,
+    setCustomerAddress,
 }) {
     const defaultImage = "https://reactnative.dev/img/tiny_logo.png";
     // calculate the discount
@@ -67,6 +69,13 @@ export default function OrderItem({
                 value={quantity}
                 onChangeText={inputHandler}
                 keyboardType="numeric"
+            />
+            <Text style={styles.label}>Customer Address:</Text>
+            <TextInput
+                style={styles.textInput}
+                value={customerAddress}
+                onChangeText={setCustomerAddress}
+                placeholder="Enter your address"
             />
             <Text style={styles.label}>
                 Delivery Date: {deliveryDate.toLocaleString()}

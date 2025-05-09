@@ -22,6 +22,7 @@ export default function OrderScreen({ route }) {
     const [isLoading, setIsLoading] = useState(false);
     const [inputQuantity, setInputQuantity] = useState("");
     const [totalAmount, setTotalAmount] = useState("0");
+    const [customerAddress, setCustomerAddress] = useState("");
     // for display paypal
     const [showModal, setShowModal] = useState(false);
     const [approvalUrl, setApprovalUrl] = useState("");
@@ -59,6 +60,7 @@ export default function OrderScreen({ route }) {
             quantity: inputQuantity,
             total_amount: totalAmount,
             delivery_date: formattedDate,
+            customer_address: customerAddress,
         };
         // using orderData to make payment request to server
         const response = await makePayment(orderData);
@@ -119,6 +121,8 @@ export default function OrderScreen({ route }) {
                     deliveryDate={deliveryDate}
                     setDeliveryDate={setDeliveryDate}
                     inputHandler={inputHandler}
+                    customerAddress={customerAddress}
+                    setCustomerAddress={setCustomerAddress}
                 />
             </ScrollView>
             <TouchableOpacity

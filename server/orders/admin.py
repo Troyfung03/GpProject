@@ -4,6 +4,6 @@ from django.contrib import admin
 from .models import Order
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'invoice_no','customer','product','quantity','delivery_date','total_amount','created',)
+    list_display = ('id', 'invoice_no', 'customer', 'product', 'quantity', 'delivery_date', 'total_amount', 'customer_address', 'created',)
 
 admin.site.register(Order, OrderAdmin)

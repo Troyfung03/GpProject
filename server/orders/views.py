@@ -54,7 +54,6 @@ def make_payment(request):
                 data['payment_token'] = payment_response.pop("payment_token")
                 serializer = OrderCreateSerializer(data=data)
                 if serializer.is_valid():
-                    # print(serializer.cleaned_data)
                     serializer.save()
                     return JsonResponse(payment_response)  # {"approval_url": approval_url}
                 print(serializer.errors)
