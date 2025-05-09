@@ -33,7 +33,12 @@ export default function ProductsScreen({ navigation }) {
                     renderItem={({ item }) => (
                         <View style={styles.productContainer}>
                             <ProductItem
-                                item={item}
+                                item={{
+                                    ...item,
+                                    description: item.description.length > 30
+                                        ? item.description.substring(0, 30) + "..." 
+                                        : item.description,
+                                }}
                                 pressHandler={pressHandler}
                             />
                         </View>
