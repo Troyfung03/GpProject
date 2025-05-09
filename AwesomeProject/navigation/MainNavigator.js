@@ -18,16 +18,17 @@ export default function MainStackNavigator() {
     // Get the token from local secure store if we had logged in before
     useEffect(() => {
         const bootstrapAsync = async () => {
-            let userToken;
-            let username;
+            let userToken = null;
+            let username = null;
             try {
                 userToken = await SecureStore.getItemAsync("userToken");
                 username = await SecureStore.getItemAsync("username");
             } catch (e) {
                 console.log("error:", e);
             }
+            // Dispatch after retrieving the token and username
+            dispatch({ type: "RETRIVE_TOKEN", token: userToken, username: username });
         };
-        dispatch({ type: "RETRIVE_TOKEN", token: userToken, username: username });
         bootstrapAsync();
     }, []);
     return (
@@ -56,4 +57,4 @@ export default function MainStackNavigator() {
             </NavigationContainer>
         </AuthContext.Provider>
     );
-}
+} 
