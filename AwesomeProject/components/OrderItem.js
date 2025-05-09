@@ -1,50 +1,95 @@
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
-import React from 'react'
-
-export default function OrderItem( { product, quantity, totalAmount, inputHandler}) {
-    const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIEphZER953uC49YZx6VPkYeUAk329tcWxnw&s'
-    const discountText = ((1-product.discount)*100).toFixed(2);
-
-
-  return (
-    <View style={styles.container}>
-        <Image
-            style={styles.logo}
-            source={{uri: product.picture == null || product.picture == "" ?
-                defaultImage: product.picture
-            }}
-        />
-
-      <Text style={styles.title}>{product.name}</Text>
-      <View style={styles.infoBox}>
-            <Text style={styles.text}>{product.description}</Text>
-            <Text style={styles.text}>Qty: {product.quantity}</Text>            
-            <Text style={styles.text}>Price: ${product.price}</Text>
-            {
-                product.discount < 1? (
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image, TextInput, Button, Platform } from "react-native";
+import DateTimePicker from '@react-native-community/datetimepicker';
+export default function OrderItem({
+    product,
+    quantity,
+    totalAmount,
+    inputHandler,
+    deliveryDate,
+    setDeliveryDate,
+}) {
+    const defaultImage = "https://reactnative.dev/img/tiny_logo.png";
+    // calculate the discount
+    const discountText = ((1 - product.discount) * 100).toFixed(2);
+    const [mode, setMode] = useState("date")
+    const [showDatetimePicker, setShowDatetimePicker] = useState(false)
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || deliveryDate;
+        setShowDatetimePicker(Platform.OS === "ios");
+        console.log(currentDate);
+        setDeliveryDate(currentDate);
+    };
+    const showMode = (currentMode) => {
+        setShowDatetimePicker(true)
+        setMode(currentMode)
+    }
+    const showDatepicker = () => {
+        showMode('date');
+    };
+    const showTimepicker = () => {
+        showMode('time');
+    };
+    return (
+        // Main container
+        <View style={styles.container}>
+            {/* display the product image */}
+            <Image
+                style={styles.logo}
+                source={{
+                    uri:
+                        product.picture == null || product.picture == ""
+                            ? defaultImage
+                            : product.picture,
+                }}
+            />
+            {/* display the product info */}
+            <Text style={styles.title}>{product.name}</Text>
+            <View style={styles.infoBox}>
+                <Text style={styles.text}>{product.description}</Text>
+                <Text style={styles.text}>Qty: {product.quantity}</Text>
+                <Text style={styles.text}>Price: ${product.price}</Text>
+                {product.discount < 1 ? (
                     <Text style={styles.text}>
-                        Discount: <Text style={styles.discountText}>{discountText}% OFF</Text>
+                        Discount:{" "}
+                        <Text style={styles.discountText}>{discountText}% OFF </Text>
                     </Text>
-                ) :null
-            }
-      </View>
-                      <TextInput
-                        style={styles.textInput}
-                        value={quantity}
-                        onChangeText={inputHandler}
-                        keyboardType='numeric'
-                      />
-                <Text style={styles.amountText}>Total: ${totalAmount}</Text>
-    </View>
-  )
+                ) : null}
+            </View>
+            {/* User quantiry input field */}
+            <TextInput
+                style={styles.textInput}
+                value={quantity}
+                onChangeText={inputHandler}
+                keyboardType="numeric"
+            />
+            <Text style={styles.text}>Delivery Date: {deliveryDate.toString()} </Text>
+            <View>
+                <Button onPress={showDatepicker} title="Choose a date!" />
+                <Button onPress={showTimepicker} title="Choose a time!" />
+                {showDatetimePicker && (
+                    <DateTimePicker
+                        testID="dateTimePicker"
+                        value={deliveryDate}
+                        minimumDate={new Date()}
+                        mode={mode}
+                        is24Hour={true}
+                        display="default"
+                        onChange={onChange}
+                    />
+                )}
+            </View>
+            {/* display total amount */}
+            <Text style={styles.amountText}>Total: ${totalAmount}</Text>
+        </View>
+    );
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
         margin: 10,
-        backgroundColor: 'white',
+        backgroundColor: "white",
         alignItems: "center",
     },
     logo: {
@@ -55,27 +100,27 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
+        fontWeight: "bold",
     },
     infoBox: {
-        alignSelf: 'flex-start',
+        alignSelf: "flex-start",
     },
     text: {
         fontSize: 20,
     },
     discountText: {
         fontSize: 20,
-        color: 'red'
+        color: "red",
     },
     amountText: {
         fontSize: 20,
-        alignSelf: 'flex-end',
+        alignSelf: "flex-end",
     },
     textInput: {
-        width: '100%',
+        width: "100%",
         marginVertical: 20,
         padding: 10,
         borderWidth: 1,
         height: 40,
-    }
-})
+    },
+});

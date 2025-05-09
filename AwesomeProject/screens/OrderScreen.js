@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {
     Alert,
     Image,
@@ -25,6 +25,7 @@ export default function OrderScreen({ route }) {
     // for display paypal
     const [showModal, setShowModal] = useState(false);
     const [approvalUrl, setApprovalUrl] = useState("");
+    const [deliveryDate, setDeliveryDate] = useState(new Date());
     const refreshControl = (
         <RefreshControl
             refreshing={isLoading}
@@ -51,10 +52,13 @@ export default function OrderScreen({ route }) {
             return;
         }
         console.log("Sending order data to server for making payment");
+
+        const formattedDate = deliveryDate.getFullYear() + "_" + (deliveryDate.getMonth() + 1) + "_" + deliveryDate.getDate();
         const orderData = {
             product: product.id,
             quantity: inputQuantity,
             total_amount: totalAmount,
+            delivery_date: formattedDate,
         };
         // using orderData to make payment request to server
         const response = await makePayment(orderData);
@@ -112,6 +116,8 @@ export default function OrderScreen({ route }) {
                     product={product}
                     quantity={inputQuantity}
                     totalAmount={totalAmount}
+                    deliveryDate={deliveryDate}
+                    setDeliveryDate={setDeliveryDate}
                     inputHandler={inputHandler}
                 />
             </ScrollView>
