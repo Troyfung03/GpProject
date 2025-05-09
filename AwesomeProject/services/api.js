@@ -77,6 +77,29 @@ export const getProducts = async () => {
             return jsonResponse;
         });
 };
+export const getOrders = async () => {
+    const userToken = await SecureStore.getItemAsync("userToken");
+    const endpoint = BASE_API_URL + "orders/";
+    const method = "GET";
+    const headers = {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Token ${userToken}`,
+    };
+    return fetch(endpoint, {
+        method: method,
+        headers: headers,
+    })
+        .then((response) => {
+            if (response.status != 200) {
+                return { error: "Cannot fetch any products" };
+            }
+            return response.json();
+        })
+        .then((jsonResponse) => {
+            return jsonResponse;
+        });
+};
 export const getProduct = async (id) => {
     const userToken = await SecureStore.getItemAsync("userToken");
     const endpoint = BASE_API_URL + `product/${id}/`;

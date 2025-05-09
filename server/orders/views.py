@@ -8,7 +8,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
  
-from .serializers import OrderListSerializer, OrderCreateSerializer
+from .serializers import OrderListSerializer, OrderCreateSerializer, OrderSerializer
 from .models import Order
 from .paypal_api import create_payment, execute_payment_process
  

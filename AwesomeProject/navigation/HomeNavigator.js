@@ -7,6 +7,7 @@ import Fontisto from '@expo/vector-icons/Fontisto';
 import ProductsScreen from "../screens/ProductsScreen";
 import OrderScreen from "../screens/OrderScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import TransactionsScreen from "../screens/TransactionsScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -17,20 +18,20 @@ function ProductNavigator() {
             <Stack.Screen
                 name="Products"
                 component={ProductsScreen}
-                opttions={{headerShown:false}}
+                opttions={{ headerShown: false }}
             />
             <Stack.Screen
                 name="Order"
                 component={OrderScreen}
-                initialParams={{product:undefined}}
-            />            
+                initialParams={{ product: undefined }}
+            />
         </Stack.Navigator>
     );
 }
 
 export default function BottomTabNavigator() {
     return (
-        <Tab.Navigator screenOptions={{headerShown:false}}>
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen
                 name="Product Tab"
                 component={ProductNavigator}
@@ -38,16 +39,28 @@ export default function BottomTabNavigator() {
                     tabBarLabel: "Products",
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="cart" color={color} size={size} />
-                        
-                      ),
+
+                    ),
                 }}
             />
+
+            <Tab.Screen
+                name="TransactionsTab"
+                component={TransactionsScreen}
+                options={{
+                    tabBarLabel: "Transactions",
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="credit-card-outline" color={color} size={size} />
+                    ),
+                }}
+            />
+
             <Tab.Screen
                 name="Profile Tab"
                 component={ProfileScreen}
                 options={{
                     tabBarLabel: "Profile",
-                    tabBarIcon: ({color,size}) => (
+                    tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="account" color={color} size={size} />
                     ),
                 }}
