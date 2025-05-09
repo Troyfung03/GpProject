@@ -55,12 +55,14 @@ export default function OrderScreen({ route }) {
         console.log("Sending order data to server for making payment");
 
         const formattedDate = deliveryDate.getFullYear() + "-" + (deliveryDate.getMonth() + 1) + "-" + deliveryDate.getDate();
+        // Update the delivery_time formatting to match the required API format
+        const formattedTime = `${deliveryDate.getHours().toString().padStart(2, '0')}:${deliveryDate.getMinutes().toString().padStart(2, '0')}:${deliveryDate.getSeconds().toString().padStart(2, '0')}`;
         const orderData = {
             product: product.id,
             quantity: inputQuantity,
             total_amount: totalAmount,
             delivery_date: formattedDate,
-            delivery_time: deliveryDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            delivery_time: formattedTime, // Use the correctly formatted time
             customer_address: customerAddress,
         };
         // using orderData to make payment request to server
@@ -99,15 +101,11 @@ export default function OrderScreen({ route }) {
         if (url.includes('/process/?status=completed')) {
             Alert.alert("Success", "Payment success", [{ text: "Okay" }]);
             setShowModal(false); // Close the modal
-            navigation.goBack(); // Navigate back after successful payment
-            return;
         }
 
         // Check for cancellation status
         if (url.includes('/cancel/?status=completed')) {
             Alert.alert("Cancelled", "Payment cancelled", [{ text: "Okay" }]);
-            setShowModal(false); // Close the modal
-            return;
         }
     }
     return (
